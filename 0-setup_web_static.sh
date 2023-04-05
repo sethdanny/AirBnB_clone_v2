@@ -14,7 +14,7 @@ echo " <!Doctype html>
   <head>
   </head>
   <body>
-    Holberton School
+    Best School
   </body>
 </html>" | sudo tee /data/web_static/releases/test/index.html
 
