@@ -4,7 +4,7 @@ of my AirBnB webstatic directory
 """
 
 
-from fabric.api import *
+from fabric.api import local
 import time
 
 
@@ -13,8 +13,9 @@ def do_pack():
 
     try:
         local("mkdir -p versions")
-        local("tar -czvf versions/web_static_{}.tgz web_static/".format
+        local("tar -cvzf versions/web_static_{}.tgz web_static".format
               (time_str))
         return ("versions/web_static_{}".format(time_str))
+    
     except Exception as e:
         return None
