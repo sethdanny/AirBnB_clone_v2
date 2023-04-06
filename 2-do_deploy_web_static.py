@@ -5,8 +5,8 @@ and decompress it"""
 from fabric.api import run, env, put
 import os.path
 
-env.hosts = ['35.229.54.225', '35.231.225.251']
-env.key_filename = "/home/seth/Desktop/alx-system_engineering-devops/0x0B-ssh/school"
+env.hosts = ['54.172.81.125', '52.204.68.184']
+env.key_filename = '~/.ssh/school'
 env.user = 'ubuntu'
 
 def do_deploy(archive_path):
@@ -24,6 +24,9 @@ def do_deploy(archive_path):
        run("sudo mkdir - p {}".format(remote_path))
        run("sudo tar -xvzf /tmp/{} -C {}".format(compressed_file, remote_path))
        run("sudo rm /tmp/{}".format(compressed_file))
+       run("sudo mv {}/web_static/* {}".format(remote_path))
+       run("sudo rm -rf {}/web_static".format(remote_path))
+       run("sudo rm -rf /data/web_static/current")
        run("sudo ln -sf {} {}".format(remote_path, sym_link))
        return True
     except Exception as e:
