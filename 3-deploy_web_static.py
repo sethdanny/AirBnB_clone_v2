@@ -10,7 +10,7 @@ Usage:
 from fabric.api import local, env, put, run
 from time import strftime
 import os.path
-env.hosts = ['35.229.54.225', '35.231.225.251']
+env.hosts = ['54.172.81.125', '52.204.68.184']
 
 
 def do_pack():
@@ -21,7 +21,7 @@ def do_pack():
         filename = "versions/web_static_{}.tgz".format(timenow)
         local("tar -cvzf {} web_static/".format(filename))
         return filename
-    except:
+    except Exception as e:
         return None
 
 
@@ -45,7 +45,7 @@ def do_deploy(archive_path):
         run("rm -rf {}".format(symlink))
         run("ln -s {} {}".format(path_no_ext, symlink))
         return True
-    except:
+    except Exception as e:
         return False
 
 
